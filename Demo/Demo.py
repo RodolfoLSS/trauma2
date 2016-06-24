@@ -5,8 +5,8 @@ try:
 	myConnection = pypyodbc.connect('Driver={SQL Server};'
 								    'Server=localhost;'
 								    'Database=Trauma2;'
-                                    'uid=sa;pwd=P@ssw0rd')
-	print('Connceted')
+                                    'uid=Rodolfo;pwd=Trauma2')
+	print('Connected')
 
 except:
 	print('Could not connect')
@@ -19,7 +19,7 @@ def main():
 
 	
 def createClass(tableName):
-	# Creating classes
+    # Creating class
 	class 'tableName':
 				def __init__(self, patientId, task, timestamp, otherAttributes):
 					self.patientId = patientId
@@ -27,11 +27,11 @@ def createClass(tableName):
 					self.timestamp = timestamp
 					otherAttributes = otherAttributes
 
-	myCursor = myConnection.cursor()
+    myCursor = myConnection.cursor()
 	SQLSelectCommand = "SELECT * \
 						FROM '%s'"  % (tableName)
 
-	# Getting tuples
+    # Getting tuples
 	try:
 		myCursor.execute(SQLSelectCommand)
 		results = myCursor.fetchall()

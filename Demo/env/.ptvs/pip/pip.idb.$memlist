@@ -4,8 +4,8 @@ utils
 UpdatingDefaultsHelpFormatter
 InstallationError
 req
+operations
 models
-__main__
 baseparser
 wheel
 exceptions
@@ -31,7 +31,7 @@ warnings
 PipError
 parseopts
 logger
-operations
+__main__
 sys
 commands
 FrozenRequirement
