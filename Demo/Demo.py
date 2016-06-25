@@ -63,7 +63,56 @@ def main():
 	elif tableName == 'OPRM':
 		createClassOprm()
 	elif tableName == 'ORGANS':
-		create
+		createClassOrgans()
+	elif tableName == 'PERHIST':
+		createClassPerhist()
+	elif tableName == 'POSTHOSP':
+		createClassPosthosp()
+	elif tableName == 'PRECONDS':
+		createClassPreconds()
+	elif tableName == 'PROTECT':
+		createClassProtect()
+	elif tableName == 'QAISSUE':
+		createClassQaissue()
+	elif tableName == 'RADIOLOG':
+		createClassRadiolog()
+	elif tableName == 'READMIT':
+		createClassReadmit()
+	elif tableName == 'STEP':
+		createClassStep()
+	elif tableName == 'SURG':
+		createClassSurg()
+	elif tableName == 'sysdefs':
+		createClassSysdefs()
+	elif tableName == 'TLogComm':
+		createClassTLogComm()
+	elif tableName == 'TOXIANAL':
+		createClassToxianal()
+	elif tableName == 'TRA':
+		createClassTra()
+	elif tableName == 'tranlog':
+		createClassTranlog()
+	elif tableName == 'TRANSFER':
+		createClassTransfer()
+	elif tableName == 'TRANSPRT':
+		createClassTransprt()
+	elif tableName == 'TREATMEN':
+		createClassTreatmen()
+	elif tableName == 'TRICRIT':
+		createClassTricrit()
+	elif tableName == 'TRMTEAM':
+		createClassTrmteam()
+	elif tableName == 'TTDETLS':
+		createClassTtdetls()
+	elif tableName == 'VITALS':
+		createClassVitals()
+	elif tableName == 'WARD':
+		createClassWard()
+	else: 
+		print ('Type a valid table name.\n')
+
+	myConnection.close()
+	myCursor.close()
 
 def createClassAcctHist():
     # Creating class
@@ -71,15 +120,15 @@ def createClassAcctHist():
     print (dois)
 
 """class AcctHist:
-				def __init__(self, patientId, task, timestamp, otherAttributes):
-					self.patientId = patientId
-					self.task = task
-					self.timestamp = timestamp
-					self.otherAttributes = otherAttributes
+		def __init__(self, patientId, task, timestamp, otherAttributes):
+			self.patientId = patientId
+			self.task = task
+			self.timestamp = timestamp
+			self.otherAttributes = otherAttributes
 
-    myCursor = myConnection.cursor()
+	myCursor = myConnection.cursor()
 	SQLSelectCommand = "SELECT * \
-						FROM '%s'"  % (tableName)
+						FROM TRAUMA2.AcctHist" 
 
     # Getting tuples
 	try:
@@ -87,12 +136,8 @@ def createClassAcctHist():
 		results = myCursor.fetchall()
 		for row in results:
 
-
 	except:
 		print "ERROR: unable to fetch data"
-
-	myConnection.close()
-  	myCursor.close()
 
 def filter():
 
