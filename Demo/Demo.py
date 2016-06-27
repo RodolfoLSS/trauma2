@@ -3,9 +3,9 @@
 print('Trying to connect')
 try:
 	myConnection = pypyodbc.connect('Driver={SQL Server};'
-								    'Server=localhost;'
-								    'Database=Trauma2;'
-                                    'uid=Rodolfo;pwd=Trauma2')
+									'Server=localhost;'
+									'Database=Trauma2;'
+									'uid=Rodolfo;pwd=Trauma2')
 	print('Connected')
 
 except:
@@ -129,13 +129,19 @@ def createClassAcctHist():
 	myCursor = myConnection.cursor()
 	SQLSelectCommand = "SELECT * \
 						FROM TRAUMA2.AcctHist" 
-
+	
     # Getting tuples
+	numberOfTuples = 0
 	try:
 		myCursor.execute(SQLSelectCommand)
 		results = myCursor.fetchall()
 		for row in results:
-
+			patient[numberOfTuples] = AcctHist()
+			patient[numberOfTuples].patientId = str(row[0])
+			patient[numberOfTuples].timestamp = str(row[2])
+			patient[numberOfTuples].task = ?????
+			patient[numberOfTuples].otherAttributes = 'acctno = "' + str(row[1]) + '", acttime = "' + str(row[3]) + '", action = "' + str(row[4]) + '", acuser = "' + str(row[5]) + '", acstation = "' + str(row[6]) + '"'
+			numberOfTuples++
 	except:
 		print "ERROR: unable to fetch data"
 
