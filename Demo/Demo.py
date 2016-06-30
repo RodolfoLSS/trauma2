@@ -443,6 +443,106 @@ def getTuplesFromHemo(myCursor):
 		print ("ERROR: unable to fetch data")
 		raise
 
+def getTuplesFromHosprev(myCursor):
+	print('Testing HOSPREV!') 
+	
+    # Getting tuples
+	try:
+		SQLSelectCommand = ('SELECT *'
+							'FROM TR02_TRANS.HOSPREV')
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+
+		patientList = []
+
+		for row in results:
+			patientId = str(row[29])
+			task = 'HOSPREV'
+			timestamp = 'None'
+			otherAttributes = 'PAYOR = ' + str(row[0]) + ', H_CHARGES = ' + str(row[1]) + ', H_RECEIPTS = ' + str(row[2]) + ', DUMFLD1 = ' + str(row[3]) + ', DUMFLD2 = ' + str(row[4]) + ', DUMFLD3 = ' + str(row[5]) + ', DUMFLD4 = ' + str(row[6]) + ', DUMFLD5 = ' + str(row[7]) + ', DUMFLD6 = ' + str(row[8]) + ', DUMFLD7 = ' + str(row[9]) + ', DUMFLD8 = ' + str(row[10]) + ', DUMFLD9 = ' + str(row[11]) + ', DUMFLD10 = ' + str(row[12]) + ', DUMFLD11 = ' + str(row[13]) + ', DUMFLD12 = ' + str(row[14]) + ', DUMFLD13 = ' + str(row[15]) + ', DUMFLD14 = ' + str(row[16]) + ', DUMFLD15 = ' + str(row[17]) + ', DUMFLD16 = ' + str(row[18]) + ', DUMFLD17 = ' + str(row[19]) + ', DUMFLD18 = ' + str(row[20]) + ', DUMFLD19 = ' + str(row[21]) + ', DUMFLD20 = ' + str(row[22]) +  ', ACCTNO = ' + str(row[23])  + ', DE_STATUS = ' + str(row[24])  + ', DECOMMFLAG = ' + str(row[25]) + ', PARENTID = ' + str(row[26]) + ', PARENTREC = ' + str(row[27])  + ', COPYNO = ' + str(row[28])
+			patient = Tuples(patientId, task, timestamp, otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			patientList.append(patient)
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
+def getTuplesFromIcu(myCursor):
+	print('Testing ICU!') 
+	
+    # Getting tuples
+	try:
+		SQLSelectCommand = ('SELECT *'
+							'FROM TR02_TRANS.ICU')
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+
+		patientList = []
+
+		for row in results:
+			patientId = str(row[41])
+			task = 'ICU'
+			timestamp = str(row[0])
+			otherAttributes = 'ENT_TIME = ' + str(row[1]) + ', EXIT_DATE = ' + str(row[2]) + ', EXIT_TIME = ' + str(row[3]) + ', ENT_FROM = ' + str(row[4]) + ', EXIT_TO = ' + str(row[5]) + ', DOCTOR = ' + str(row[6]) + ', SERVICE = ' + str(row[7]) + ', SUB_CT = ' + str(row[8]) + ', UNPLAN_RTN = ' + str(row[9]) + ', LOS = ' + str(row[10]) + ', BLOODPRO = ' + str(row[11]) + ', AUTOTRANS = ' + str(row[12]) + ', TOTBLDPROD = ' + str(row[13]) + ', ICUTXCOMM = ' + str(row[14]) + ', DUMFLD1 = ' + str(row[15]) + ', DUMFLD2 = ' + str(row[16]) + ', DUMFLD3 = ' + str(row[17]) + ', DUMFLD4 = ' + str(row[18]) + ', DUMFLD5 = ' + str(row[19]) + ', DUMFLD6 = ' + str(row[20]) + ', DUMFLD7 = ' + str(row[21]) + ', DUMFLD8 = ' + str(row[22]) + ', DUMFLD9 = ' + str(row[23]) + ', DUMFLD10 = ' + str(row[24]) + ', DUMFLD11 = ' + str(row[25]) + ', DUMFLD12 = ' + str(row[26]) + ', DUMFLD13 = ' + str(row[27]) + ', DUMFLD14 = ' + str(row[28]) + ', DUMFLD15 = ' + str(row[29]) + ', DUMFLD16 = ' + str(row[30]) + ', DUMFLD17 = ' + str(row[31]) + ', DUMFLD18 = ' + str(row[32]) + ', DUMFLD19 = ' + str(row[33]) + ', DUMFLD20 = ' + str(row[34]) + ', ACCTNO = ' + str(row[35]) + ', DE_STATUS = ' + str(row[36]) + ', DECOMMFLAG = ' + str(row[37]) + ', PARENTID = ' + str(row[38]) + ', PARENTREC = ' + str(row[39]) + ', COPYNO = ' + str(row[40])
+			patient = Tuples(patientId, task, timestamp, otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			patientList.append(patient)
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
+def getTuplesFromInjdets(myCursor):
+	print('Testing INJDETS!') 
+	
+    # Getting tuples
+	try:
+		SQLSelectCommand = ('SELECT *'
+							'FROM TR02_TRANS.INJDETS')
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+
+		patientList = []
+
+		for row in results:
+			patientId = str(row[60])
+			task = 'INJDETS'
+			timestamp = 'None'
+			otherAttributes = 'INITIALCARE = ' + str(row[0]) + ', SEVR_DIST = ' + str(row[1]) + ', ALERT_BY = ' + str(row[2]) + ', EMS_AIDER = ' + str(row[3]) + ', FIRST_AID = ' + str(row[4]) + ', EXTR_DONE = ' + str(row[5]) + ', EXTR_TIME = ' + str(row[6]) + ', INJ_BLDG = ' + str(row[7]) + ', INJ_STR1 = ' + str(row[8]) + ', INJ_STR2 = ' + str(row[9]) + ', INJ_ST_TYP = ' + str(row[10]) + ', QUADRANT = ' + str(row[11]) + ', INJ_CITY = ' + str(row[12]) + ', INJ_STATE = ' + str(row[13]) + ', INJ_ZIP = ' + str(row[14]) + ', INJ_ZIPPLS = ' + str(row[15]) + ', INJ_CNTY = ' + str(row[16]) + ', DESCRIPTIO = ' + str(row[17]) + ', SITE_CLASS = ' + str(row[18]) + ', MAP_PAGE = ' + str(row[19]) + ', MAP_X = ' + str(row[20]) + ', MAP_Y = ' + str(row[21]) + ', IN_CEN_TRT = ' + str(row[22]) + ', JOB_RELTD = ' + str(row[23]) + ', JOB_INDTRY = ' + str(row[24]) + ', JOB_TITLE = ' + str(row[25]) + ', JOB_EMP = ' + str(row[26]) + ', FALL_HT = ' + str(row[27]) + ', ETOH_PRES = ' + str(row[28]) + ', INJ_CLASS = ' + str(row[29]) + ', VEH_SPEED = ' + str(row[30]) + ', LOC = ' + str(row[31]) + ', LOC_LEN = ' + str(row[32]) + ', LOC_UNITS = ' + str(row[33]) + ', DUMFLD1 = ' + str(row[34]) + ', DUMFLD2 = ' + str(row[35]) + ', DUMFLD3 = ' + str(row[36]) + ', DUMFLD4 = ' + str(row[37]) + ', DUMFLD5 = ' + str(row[38]) + ', DUMFLD6 = ' + str(row[39]) + ', DUMFLD7 = ' + str(row[40]) + ', DUMFLD8 = ' + str(row[41]) + ', DUMFLD9 = ' + str(row[42]) + ', DUMFLD10 = ' + str(row[43]) + ', DUMFLD11 = ' + str(row[44]) + ', DUMFLD12 = ' + str(row[45]) + ', DUMFLD13 = ' + str(row[46]) + ', DUMFLD14 = ' + str(row[47]) + ', DUMFLD15 = ' + str(row[48]) + ', DUMFLD16 = ' + str(row[49]) + ', DUMFLD17 = ' + str(row[50]) + ', DUMFLD18 = ' + str(row[51]) + ', DUMFLD19 = ' + str(row[52]) + ', DUMFLD20 = ' + str(row[53]) + ', ACCTNO = ' + str(row[54]) + ', DE_STATUS = ' + str(row[55]) + ', DECOMMFLAG = ' + str(row[56]) + ', PARENTID = ' + str(row[57]) + ', PARENTREC = ' + str(row[58]) + ', COPYNO = ' + str(row[59])
+			patient = Tuples(patientId, task, timestamp, otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			patientList.append(patient)
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
+def getTuplesFromInjdiag(myCursor):
+	print('Testing INJDIAG!') 
+	
+    # Getting tuples
+	try:
+		SQLSelectCommand = ('SELECT *'
+							'FROM TR02_TRANS.INJDIAG')
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+
+		patientList = []
+
+		for row in results:
+			patientId = str(row[41])
+			task = 'INJDIAG'
+			timestamp = str(row[6])
+			otherAttributes = 'CAREPHASE = ' + str(row[0]) + ', INJ_CLASS = ' + str(row[1]) + ', INJ_COMP = ' + str(row[2]) + ', AIS = ' + str(row[3]) + ', BODY_PART = ' + str(row[4]) + ', AIS_CODE = ' + str(row[5]) + ', TIME = ' + str(row[7]) + ', SOURCE = ' + str(row[8]) + ', SERVICE = ' + str(row[9]) + ', DESCRIPTOR = ' + str(row[10]) + ', DIAG_NOTE = ' + str(row[11]) + ', DX_TEXT = ' + str(row[12]) + ', PHASE_COPY = ' + str(row[13]) + ', DUMFLD1 = ' + str(row[14]) + ', DUMFLD2 = ' + str(row[15]) + ', DUMFLD3 = ' + str(row[16]) + ', DUMFLD4 = ' + str(row[17]) + ', DUMFLD5 = ' + str(row[18]) + ', DUMFLD6 = ' + str(row[19]) + ', DUMFLD7 = ' + str(row[20]) + ', DUMFLD8 = ' + str(row[21]) + ', DUMFLD9 = ' + str(row[22]) + ', DUMFLD10 = ' + str(row[23]) + ', DUMFLD11 = ' + str(row[24]) + ', DUMFLD12 = ' + str(row[25]) + ', DUMFLD13 = ' + str(row[26]) + ', DUMFLD14 = ' + str(row[27]) + ', DUMFLD15 = ' + str(row[28]) + ', DUMFLD16 = ' + str(row[29]) + ', DUMFLD17 = ' + str(row[30]) + ', DUMFLD18 = ' + str(row[31]) + ', DUMFLD19 = ' + str(row[32]) + ', DUMFLD20 = ' + str(row[33]) + ', FX_FREE_TX' + str(row[34]) + ', ACCTNO = ' + str(row[35]) + ', DE_STATUS = ' + str(row[36]) + ', DECOMMFLAG = ' + str(row[37]) + ', PARENTID = ' + str(row[38]) + ', PARENTREC = ' + str(row[39]) + ', COPYNO = ' + str(row[40])
+			patient = Tuples(patientId, task, timestamp, otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			patientList.append(patient)
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
 """
 def filter():
 
