@@ -749,7 +749,32 @@ def getTuplesFromPerhist(myCursor):
     # Getting tuples
 	try:
 		SQLSelectCommand = ('SELECT *'
-							'FROM TR02_TRANS.PERHIST') # STOPPED ON APT_NO
+							'FROM TR02_TRANS.PERHIST')
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+
+		patientList = []
+
+		for row in results:
+			patientId = str(row[68])
+			task = 'PERHIST'
+			timestamp = str(row[4])
+			otherAttributes = 'PT_SSN = ' + str(row[0]) + ', SEX = ' + str(row[1]) + ', RACE = ' + str(row[2]) + ', MARG_STAT = ' + str(row[3]) + ', AGE = ' + str(row[5]) + ', AGE_UNIT = ' + str(row[6]) + ', BORN_CITY = ' + str(row[7]) + ', BORN_CNTY = ' + str(row[8]) + ', BORN_STATE = ' + str(row[9]) + ', BORN_CNTRY = ' + str(row[10]) + ', BLDG_NO = ' + str(row[11]) + ', PT_STREET = ' + str(row[12]) + ', PER_ST_TYP = ' + str(row[13]) + ', QUAD = ' + str(row[14]) + ', APT_NO = ' + str(row[15]) + ', PT_CITY = ' + str(row[16]) + ', PT_STATE = ' + str(row[17]) + ', PT_ZIP = ' + str(row[18]) + ', PER_ZIPPLS = ' + str(row[19]) + ', PT_CNTY = ' + str(row[20]) + ', PT_CNTRY = ' + str(row[21]) + ', PR_CEN_TRT = ' + str(row[22]) + ', PT_PHONE = ' + str(row[23]) + ', NEXT_KIN_L = ' + str(row[24]) + ', NEXT_KIN_F = ' + str(row[25]) + ', RELATION = ' + str(row[26]) + ', ELGBL_ALIN = ' + str(row[27]) + ', EMPLY_TYPE = ' + str(row[28]) + ', MONTH_INC = ' + str(row[29]) + ', INCME_SRCE = ' + str(row[30]) + ', FAMILY_SIZ = ' + str(row[31]) + ', MOM_NAME = ' + str(row[32]) + ', SIGN_OTHER = ' + str(row[33]) + ', SIGN_ADDRE = ' + str(row[34]) + ', SIGN_CITY = ' + str(row[35]) + ', SIGN_STATE = ' + str(row[36]) + ', SIGN_ZIP = ' + str(row[37]) + ', SIGN_PHONE = ' + str(row[38]) + ', PREGNANT = ' + str(row[39]) + ', DUMFLD1' + str(row[40]) + ', DUMFLD2 = ' + str(row[41]) + ', DUMFLD3 = ' + str(row[42]) + ', DUMFLD4 = ' + str(row[43]) + ', DUMFLD5 = ' + str(row[44]) + ', DUMFLD6 = ' + str(row[45]) + ', DUMFLD7 = ' + str(row[46]) + ', DUMFLD8 = ' + str(row[47]) + ', DUMFLD9 = ' + str(row[48]) + ', DUMFLD10 = ' + str(row[49]) + ', DUMFLD11 = ' + str(row[50]) + ', DUMFLD12 = ' + str(row[51]) + ', DUMFLD13 = ' + str(row[52]) + ', DUMFLD14 = ' + str(row[53]) + ', DUMFLD15 = ' + str(row[54]) + ', DUMFLD16 = ' + str(row[55]) + ', DUMFLD17 = ' + str(row[56]) + ', DUMFLD18 = ' + str(row[57]) + ', DUMFLD19 = ' + str(row[58]) + ', DUMFLD20 = ' + str(row[59]) + ', ALT_ADDRES = ' + str(row[60]) + ', ETHNICITY = ' + str(row[61]) + ', ACCTNO = ' + str(row[62]) + ', DE_STATUS = ' + str(row[63]) + ', DECOMMFLAG = ' + str(row[64]) + ', PARENTID = ' + str(row[65]) + ', PARENTREC = ' + str(row[66]) + ', COPYNO = ' + str(row[67])
+			patient = Tuples(patientId, task, timestamp, otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			patientList.append(patient)
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
+def getTuplesFromPosthosp(myCursor):
+	print('Testing POSTHOSP!') 
+	
+    # Getting tuples
+	try:
+		SQLSelectCommand = ('SELECT *'
+							'FROM TR02_TRANS.POSTHOSP') # ND PRONTO
 		myCursor.execute(SQLSelectCommand)
 		results = myCursor.fetchall()
 
@@ -757,9 +782,9 @@ def getTuplesFromPerhist(myCursor):
 
 		for row in results:
 			patientId = str(row[])
-			task = 'PERHIST'
-			timestamp = str(row[4])
-			otherAttributes = 'PT_SSN = ' + str(row[0]) + ', SEX = ' + str(row[1]) + ', RACE = ' + str(row[2]) + ', MARG_STAT = ' + str(row[3]) + ', AGE = ' + str(row[5]) + ', AGE_UNIT = ' + str(row[6]) + ', BORN_CITY = ' + str(row[7]) + ', BORN_CNTRY = ' + str(row[8]) + ', BLDG_NO = ' + str(row[9]) + ', PT_STREET = ' + str(row[10]) + ', PER_ST_TYP = ' + str(row[11]) + ', QUAD = ' + str(row[12]) + ', APT_NO = ' + str(row[13]) + ', EM_DISPO = ' + str(row[13]) + ', EM_LFT_VIA = ' + str(row[14]) + ', EM_REBG_TM = ' + str(row[15]) + ', EM_REEN_TM = ' + str(row[16]) + ', EM_DOCTOR = ' + str(row[17]) + ', EM_SERVICE = ' + str(row[18]) + ', EM_UNCPROB = ' + str(row[19]) + ', EM_LOS = ' + str(row[20]) + ', EM_SUB_CT = ' + str(row[21]) + ', EM_SEV_HD = ' + str(row[22]) + ', TM_CT = ' + str(row[23]) + ', R_TOT_TME = ' + str(row[24]) + ', IVFLUIDS = ' + str(row[25]) + ', BLOODPRO = ' + str(row[26]) + ', AUTOTRANS = ' + str(row[27]) + ', TOTIVBLD = ' + str(row[28]) + ', HEADCTTM = ' + str(row[29]) + ', HEADCTRES = ' + str(row[30]) + ', CSPINETM = ' + str(row[31]) + ', CSPINERES = ' + str(row[32]) + ', ETTTIME = ' + str(row[33]) + ', ERTHORTIME = ' + str(row[34]) + ', DPLTIME = ' + str(row[35]) + ', CHTUBELTM = ' + str(row[36]) + ', CHTUBERTM = ' + str(row[37]) + ', CRICHTIME = ' + str(row[38]) + ', TRACHTIME = ' + str(row[39]) + ', TOX = ' + str(row[40]) + ', SIGNSLIFE = ' + str(row[41]) + ', DUMFLD2 = ' + str(row[42]) + ', DUMFLD3 = ' + str(row[43]) + ', DUMFLD4 = ' + str(row[44]) + ', DUMFLD5 = ' + str(row[45]) + ', DUMFLD6 = ' + str(row[46]) + ', DUMFLD7 = ' + str(row[47]) + ', DUMFLD8 = ' + str(row[48]) + ', DUMFLD9 = ' + str(row[49]) + ', DUMFLD10 = ' + str(row[50]) + ', DUMFLD11 = ' + str(row[51]) + ', DUMFLD12 = ' + str(row[52]) + ', DUMFLD13 = ' + str(row[53]) + ', DUMFLD14 = ' + str(row[54]) + ', DUMFLD15 = ' + str(row[55]) + ', DUMFLD16 = ' + str(row[56]) + ', DUMFLD17 = ' + str(row[57]) + ', DUMFLD18 = ' + str(row[58]) + ', DUMFLD19 = ' + str(row[59]) + ', DUMFLD20 = ' + str(row[60]) + ', E_AR_FROM = ' + str(row[61]) + ', E_TRANSPOR = ' + str(row[62]) + ', ACCTNO = ' + str(row[63]) + ', DE_STATUS = ' + str(row[64]) + ', DECOMMFLAG = ' + str(row[65]) + ', PARENTID = ' + str(row[66]) + ', PARENTREC = ' + str(row[67]) + ', COPYNO = ' + str(row[68])
+			task = 'POSTHOSP'
+			timestamp = str(row[0])
+			otherAttributes = ' = ' + str(row[0]) + ', CAREPHASE = ' + str(row[1]) + ', TIME = ' + str(row[3]) + ', AIS_FACE = ' + str(row[4]) + ', AIS_HEAD = ' + str(row[5]) + ', AIS_ABD = ' + str(row[6]) + ', AIS_EXTRMY = ' + str(row[7]) + ', AIS_CHEST = ' + str(row[8]) + ', AIS_EXTRNL = ' + str(row[9]) + ', DRG_DX = ' + str(row[10]) + ', PHASE_COPY = ' + str(row[11]) + ', DUMFLD1 = ' + str(row[12]) + ', DUMFLD2 = ' + str(row[13]) + ', DUMFLD3 = ' + str(row[14]) + ', DUMFLD4 = ' + str(row[15]) + ', DUMFLD5 = ' + str(row[16]) + ', DUMFLD6 = ' + str(row[17]) + ', DUMFLD7 = ' + str(row[18]) + ', DUMFLD8 = ' + str(row[19]) + ', DUMFLD9 = ' + str(row[20]) + ', DUMFLD10 = ' + str(row[21]) + ', DUMFLD11 = ' + str(row[22]) + ', DUMFLD12 = ' + str(row[23]) + ', DUMFLD13 = ' + str(row[24]) + ', DUMFLD14 = ' + str(row[25]) + ', DUMFLD15 = ' + str(row[26]) + ', DUMFLD16 = ' + str(row[27]) + ', DUMFLD17 = ' + str(row[28]) + ', DUMFLD18 = ' + str(row[29]) + ', DUMFLD19 = ' + str(row[30]) + ', DUMFLD20 = ' + str(row[31]) + ', NISS = ' + str(row[32]) + ', ACCTNO = ' + str(row[33]) + ', DE_STATUS = ' + str(row[34]) + ', DECOMMFLAG = ' + str(row[35]) + ', PARENTID = ' + str(row[36]) + ', PARENTREC = ' + str(row[37]) + ', COPYNO = ' + str(row[38])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
