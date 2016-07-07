@@ -18,11 +18,11 @@ def main():
 	tableName = input('Table name: ')
 
 	if tableName == 'AcctHist':
-		getTuplesFromAcctHist(myCursor)
+		objectList = getTuplesFromAcctHist(myCursor)
 	elif tableName == 'ADM_INPT':
 		getTuplesFromAdm_inpt(myCursor)
 	elif tableName == 'BURNS': 
-		getTuplesFromBurns(myCursor)
+		objectList = getTuplesFromBurns(myCursor)
 	elif tableName == 'comments': 
 		getTuplesFromComments(myCursor) 
 	elif tableName == 'CONSULT': 
@@ -114,6 +114,15 @@ def main():
 	else: 
 		print ('Type a valid table name.\n')
 
+	function = input('Type 1 to filter by attributes or 2 to sort by timestamp: ')
+	if function == '1' :
+		filter(objectList)
+	elif function == '2' :
+		output2File()
+	else :
+		print('Not a valid number!')
+
+
 	myConnection.close()
 	myCursor.close()
 
@@ -137,6 +146,8 @@ def getTuplesFromAcctHist(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 			
 	except:
 		print ("ERROR: unable to fetch data")
@@ -187,6 +198,8 @@ def getTuplesFromBurns(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -859,7 +872,7 @@ def getTuplesFromQaissue(myCursor): # PROBLEM WITH CHARACTER
 			patientId = str(row[54])
 			task = 'QAISSUE'
 			timestamp = str(row[8])
-			otherAttributes = 'CAREPHASE = ' + str(row[0])# + ', ORG_DATE = ' + str(row[1]) + ', QA_ISSUE = ' + str(row[2]) + ', PRIM_CAUSE = ' + str(row[3]) + ', REVIEW_BY = ' + str(row[4]) + ', REVIEW_DAT = ' + str(row[5]) + ', RECOMD = ' + str(row[6]) + ', RESOLUTE = ' + str(row[7]) + ', IS_DESCRIP = ' + str(row[9]) + ', DOC_NAME = ' + str(row[10]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'").replace(u"\xa" , "'") + ', FACTOR = ' + str(row[11]) + ', MORBIDITY = ' + str(row[12]) + ', MORTABILITY = ' + str(row[13]) + ', QI_MEMO = ' + str(row[14]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'").replace(u"\xa" , "'") + ', DUMFLD1 = ' + str(row[15]) + ', DUMFLD2 = ' + str(row[16]) + ', DUMFLD3 = ' + str(row[17]) + ', DUMFLD4 = ' + str(row[18]) + ', DUMFLD5 = ' + str(row[19]) + ', DUMFLD6 = ' + str(row[20]) + ', DUMFLD7 = ' + str(row[21]) + ', DUMFLD8 = ' + str(row[22]) + ', DUMFLD9 = ' + str(row[23]) + ', DUMFLD10 = ' + str(row[24]) + ', DUMFLD11 = ' + str(row[25]) + ', DUMFLD12 = ' + str(row[26]) + ', DUMFLD13 = ' + str(row[27]) + ', DUMFLD14 = ' + str(row[28]) + ', DUMFLD15 = ' + str(row[29]) + ', DUMFLD16 = ' + str(row[30]) + ', DUMFLD17 = ' + str(row[31]) + ', DUMFLD18 = ' + str(row[32]) + ', DUMFLD19 = ' + str(row[33]) + ', DUMFLD20 = ' + str(row[34]) + ', QA_PDA = ' + str(row[35]) + ', QA_PDA2 = ' + str(row[36]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'").replace(u"\xa" , "'") + ', ACTION = ' + str(row[37]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'").replace(u"\xa" , "'") + ', REFERTO = ' + str(row[38]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'").replace(u"\xa" , "'") + ', LOCATION = ' + str(row[39]) + ', TPM_R_DATE = ' + str(row[40]) + ', TMD_R_DATE = ' + str(row[41]) + ', HX_FLU = ' + str(row[42]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'").replace(u"\xa" , "'") + ', QA_EVENT = ' + str(row[43]) + ', SYSREL = ' + str(row[44]) + ', DISREL = ' + str(row[45]) + ', PROVEL = ' + str(row[46]) + ', STATUS = ' + str(row[47]) + ', ACCTNO = ' + str(row[48]) + ', DE_STATUS = ' + str(row[49]) + ', DECOMMFLAG = ' + str(row[50]) + ', PARENTID = ' + str(row[51]) + ', PARENTREC = ' + str(row[52]) + ', COPYNO = ' + str(row[53])
+			otherAttributes = 'CAREPHASE = ' + str(row[0]) + ', ORG_DATE = ' + str(row[1]) + ', QA_ISSUE = ' + str(row[2]) + ', PRIM_CAUSE = ' + str(row[3]) + ', REVIEW_BY = ' + str(row[4]) + ', REVIEW_DAT = ' + str(row[5]) + ', RECOMD = ' + str(row[6]) + ', RESOLUTE = ' + str(row[7]) + ', IS_DESCRIP = ' + str(row[9]) + ', DOC_NAME = ' + str(row[10]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', FACTOR = ' + str(row[11]) + ', MORBIDITY = ' + str(row[12]) + ', MORTABILITY = ' + str(row[13]) + ', QI_MEMO = ' + str(row[14]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', DUMFLD1 = ' + str(row[15]) + ', DUMFLD2 = ' + str(row[16]) + ', DUMFLD3 = ' + str(row[17]) + ', DUMFLD4 = ' + str(row[18]) + ', DUMFLD5 = ' + str(row[19]) + ', DUMFLD6 = ' + str(row[20]) + ', DUMFLD7 = ' + str(row[21]) + ', DUMFLD8 = ' + str(row[22]) + ', DUMFLD9 = ' + str(row[23]) + ', DUMFLD10 = ' + str(row[24]) + ', DUMFLD11 = ' + str(row[25]) + ', DUMFLD12 = ' + str(row[26]) + ', DUMFLD13 = ' + str(row[27]) + ', DUMFLD14 = ' + str(row[28]) + ', DUMFLD15 = ' + str(row[29]) + ', DUMFLD16 = ' + str(row[30]) + ', DUMFLD17 = ' + str(row[31]) + ', DUMFLD18 = ' + str(row[32]) + ', DUMFLD19 = ' + str(row[33]) + ', DUMFLD20 = ' + str(row[34]) + ', QA_PDA = ' + str(row[35]) + ', QA_PDA2 = ' + str(row[36]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', ACTION = ' + str(row[37]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', REFERTO = ' + str(row[38]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', LOCATION = ' + str(row[39]) + ', TPM_R_DATE = ' + str(row[40]) + ', TMD_R_DATE = ' + str(row[41]) + ', HX_FLU = ' + str(row[42]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', QA_EVENT = ' + str(row[43]) + ', SYSREL = ' + str(row[44]) + ', DISREL = ' + str(row[45]) + ', PROVEL = ' + str(row[46]) + ', STATUS = ' + str(row[47]) + ', ACCTNO = ' + str(row[48]) + ', DE_STATUS = ' + str(row[49]) + ', DECOMMFLAG = ' + str(row[50]) + ', PARENTID = ' + str(row[51]) + ', PARENTREC = ' + str(row[52]) + ', COPYNO = ' + str(row[53])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
@@ -1293,9 +1306,36 @@ def getTuplesFromWard(myCursor):
 		print ("ERROR: unable to fetch data")
 		raise
 
-"""
-def filter():
+def filter(objectList):
+	try:
+		counter = 0
+		chosenAttribute = input('Filter by: \n 1 = patientId \n 2 = task \n 3 = timestamp \n 4 = otherAttributes')
+		if chosenAttribute == '1' :
+			chosenAttribute = input(
+			if
+		elif chosenAttribute == '2' :
+			o
+		else :
+			print('Not a valid number!')
+		while counter < len(objectList) :
+			print(objectList[counter].patientId, objectList[counter].task, objectList[counter].timestamp, objectList[counter].otherAttributes)
+			counter =+ 1
+		"""
+		for row in results:
+			patientId = str(row[30])
+			task = 'BURNS'
+			timestamp = 'None'
+			otherAttributes = 'PART_BURN = ' + str(row[0]) + ', PERC_BURN = ' + str(row[1]) + ', PHASE_COPY = ' + str(row[2]) + ', CAREPHASE = ' + str(row[3]) + ', DUMFLD1 = ' + str(row[4]) + ', DUMFLD2 = ' + str(row[5]) + ', DUMFLD3 = ' + str(row[6]) + ', DUMFLD4 = ' + str(row[7]) + ', DUMFLD5 = ' + str(row[8]) + ', DUMFLD6 = ' + str(row[9]) + ', DUMFLD7 = ' + str(row[10]) + ', DUMFLD8 = ' + str(row[11]) + ', DUMFLD9 = ' + str(row[12]) + ', DUMFLD10 = ' + str(row[13]) + ', DUMFLD11 = ' + str(row[14]) + ', DUMFLD12 = ' + str(row[15]) + ', DUMFLD13 = ' + str(row[16]) + ', DUMFLD14 = ' + str(row[17]) + ', DUMFLD15 = ' + str(row[18]) + ', DUMFLD16 = ' + str(row[19]) + ', DUMFLD17 = ' + str(row[20]) + ', DUMFLD18 = ' + str(row[21]) + ', DUMFLD19 = ' + str(row[22]) + ', DUMFLD20 = ' + str(row[23]) + ', ACCTNO = ' + str(row[24])  + ', DE_STATUS = ' + str(row[25])  + ', DECOMMFLAG = ' + str(row[26]) + ', PARENTID = ' + str(row[27]) + ', PARENTREC = ' + str(row[28])  + ', COPYNO = ' + str(row[29])
+			patient = Tuples(patientId, task, timestamp, otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			patientList.append(patient)
 
+		return patientList
+		"""
+	except:
+		print ("ERROR: unable to filter")
+		raise
+"""
 def output2File():
 """
 if __name__ == '__main__':
