@@ -20,111 +20,112 @@ def main():
 	if tableName == 'AcctHist':
 		objectList = getTuplesFromAcctHist(myCursor)
 	elif tableName == 'ADM_INPT':
-		getTuplesFromAdm_inpt(myCursor)
+		objectList = getTuplesFromAdm_inpt(myCursor)
 	elif tableName == 'BURNS': 
 		objectList = getTuplesFromBurns(myCursor)
 	elif tableName == 'comments': 
-		getTuplesFromComments(myCursor) 
+		objectList = getTuplesFromComments(myCursor) 
 	elif tableName == 'CONSULT': 
-		getTuplesFromConsult(myCursor)
+		objectList = getTuplesFromConsult(myCursor)
 	elif tableName == 'CULTURE': 
-		getTuplesFromCulture(myCursor)
+		objectList = getTuplesFromCulture(myCursor)
 	elif tableName == 'dellog': 
-		getTuplesFromDellog(myCursor)
+		objectList = getTuplesFromDellog(myCursor)
 	elif tableName == 'DIAGS': 
-		getTuplesFromDiags(myCursor)
+		objectList = getTuplesFromDiags(myCursor)
 	elif tableName == 'EMERG':
-	    getTuplesFromEmerg(myCursor)
+	    objectList = getTuplesFromEmerg(myCursor)
 	elif tableName == 'FINANCE': 
-		getTuplesFromFinance(myCursor)
+		objectList = getTuplesFromFinance(myCursor)
 	elif tableName == 'FLDDETAI': 
-		getTuplesFromFlddetai(myCursor)
+		objectList = getTuplesFromFlddetai(myCursor)
 	elif tableName == 'GENMECH': 
-		getTuplesFromGenmech(myCursor)
+		objectList = getTuplesFromGenmech(myCursor)
 	elif tableName == 'HEMO': 
-		getTuplesFromHemo(myCursor)
+		objectList = getTuplesFromHemo(myCursor)
 	elif tableName == 'HOSPREV':
-		getTuplesFromHosprev(myCursor)
+		objectList = getTuplesFromHosprev(myCursor)
 	elif tableName == 'ICU':
-		getTuplesFromIcu(myCursor)
+		objectList = getTuplesFromIcu(myCursor)
 	elif tableName == 'INJDETS':
-		getTuplesFromInjdets(myCursor)
+		objectList = getTuplesFromInjdets(myCursor)
 	elif tableName == 'INJDIAG':
-		getTuplesFromInjdiag(myCursor)
+		objectList = getTuplesFromInjdiag(myCursor)
 	elif tableName == 'INJMECH':
-		getTuplesFromInjmech(myCursor)
+		objectList = getTuplesFromInjmech(myCursor)
 	elif tableName == 'LAB':
-		getTuplesFromLab(myCursor)
+		objectList = getTuplesFromLab(myCursor)
 	elif tableName == 'MAINDATA':
-		getTuplesFromMaindata(myCursor)
+		objectList = getTuplesFromMaindata(myCursor)
 	elif tableName == 'MORTDETS':
-		getTuplesFromMortdets(myCursor)
+		objectList = getTuplesFromMortdets(myCursor)
 	elif tableName == 'MTOS':
-		getTuplesFromMtos(myCursor)
+		objectList = getTuplesFromMtos(myCursor)
 	elif tableName == 'NARRATIV':
-		getTuplesFromNarrativ(myCursor)
+		objectList = getTuplesFromNarrativ(myCursor)
 	elif tableName == 'OPRM':
-		getTuplesFromOprm(myCursor)
+		objectList = getTuplesFromOprm(myCursor)
 	elif tableName == 'ORGANS':
-		getTuplesFromOrgans(myCursor)
+		objectList = getTuplesFromOrgans(myCursor)
 	elif tableName == 'PERHIST':
-		getTuplesFromPerhist(myCursor)
+		objectList = getTuplesFromPerhist(myCursor)
 	elif tableName == 'POSTHOSP':
-		getTuplesFromPosthosp(myCursor)
+		objectList = getTuplesFromPosthosp(myCursor)
 	elif tableName == 'PRECONDS':
-		getTuplesFromPreconds(myCursor)
+		objectList = getTuplesFromPreconds(myCursor)
 	elif tableName == 'PROTECT':
-		getTuplesFromProtect(myCursor)
+		objectList = getTuplesFromProtect(myCursor)
 	elif tableName == 'QAISSUE':
-		getTuplesFromQaissue(myCursor)
+		objectList = getTuplesFromQaissue(myCursor)
 	elif tableName == 'RADIOLOG':
-		getTuplesFromRadiolog(myCursor)
+		objectList = getTuplesFromRadiolog(myCursor)
 	elif tableName == 'READMIT':
-		getTuplesFromReadmit(myCursor)
+		objectList = getTuplesFromReadmit(myCursor)
 	elif tableName == 'STEP':
-		getTuplesFromStep(myCursor)
+		objectList = getTuplesFromStep(myCursor)
 	elif tableName == 'SURG':
-		getTuplesFromSurg(myCursor)
+		objectList = getTuplesFromSurg(myCursor)
 	elif tableName == 'sysdefs':
-		getTuplesFromSysdefs(myCursor)
+		objectList = getTuplesFromSysdefs(myCursor)
 	elif tableName == 'TLogComm':
-		getTuplesFromTLogComm(myCursor)
+		objectList = getTuplesFromTLogComm(myCursor)
 	elif tableName == 'TOXIANAL':
-		getTuplesFromToxianal(myCursor)
+		objectList = getTuplesFromToxianal(myCursor)
 	elif tableName == 'TRA':
-		getTuplesFromTra(myCursor)
+		objectList = getTuplesFromTra(myCursor)
 	elif tableName == 'tranlog':
-		getTuplesFromTranlog(myCursor)
+		objectList = getTuplesFromTranlog(myCursor)
 	elif tableName == 'TRANSFER':
-		getTuplesFromTransfer(myCursor)
+		objectList = getTuplesFromTransfer(myCursor)
 	elif tableName == 'TRANSPRT':
-		getTuplesFromTransprt(myCursor)
+		objectList = getTuplesFromTransprt(myCursor)
 	elif tableName == 'TREATMEN':
-		getTuplesFromTreatmen(myCursor)
+		objectList = getTuplesFromTreatmen(myCursor)
 	elif tableName == 'TRICRIT':
-		getTuplesFromTricrit(myCursor)
+		objectList = getTuplesFromTricrit(myCursor)
 	elif tableName == 'TRMTEAM':
-		getTuplesFromTrmteam(myCursor)
+		objectList = getTuplesFromTrmteam(myCursor)
 	elif tableName == 'TTDETLS':
-		getTuplesFromTtdetls(myCursor)
+		objectList = getTuplesFromTtdetls(myCursor)
 	elif tableName == 'VITALS':
-		getTuplesFromVitals(myCursor)
+		objectList = getTuplesFromVitals(myCursor)
 	elif tableName == 'WARD':
-		getTuplesFromWard(myCursor)
+		objectList = getTuplesFromWard(myCursor)
 	else: 
 		print ('Type a valid table name.\n')
+		raise
+
+	myConnection.close()
+	myCursor.close()
 
 	function = input('Type 1 to filter by attributes or 2 to sort by timestamp: ')
 	if function == '1' :
 		filter(objectList)
 	elif function == '2' :
-		output2File()
+		output2File(objectList)
 	else :
 		print('Not a valid number!')
-
-
-	myConnection.close()
-	myCursor.close()
+		raise
 
 def getTuplesFromAcctHist(myCursor):
 	print ('Testing AcctHist!') 
@@ -171,8 +172,9 @@ def getTuplesFromAdm_inpt(myCursor):
 			timestamp = str(row[2])
 			otherAttributes =  'PT_LOCAT = ' + str(row[0]) + ', ROOM_NO = ' + str(row[1]) + ', DATE_OUT = ' + str(row[3]) + ', PROVDER_IN = ' + str(row[4]) + ', LOS_IN = ' + str(row[5]) + ', CAREPHASE = ' + str(row[6]) + ', DUMFLD1 = ' + str(row[7]) + ', DUMFLD2 = ' + str(row[8]) + ', DUMFLD3 = ' + str(row[9]) + ', DUMFLD4 = ' + str(row[10]) + ', DUMFLD5 = ' + str(row[11]) + ', DUMFLD6 = ' + str(row[12]) + ', DUMFLD7 = ' + str(row[13]) + ', DUMFLD8 = ' + str(row[14]) + ', DUMFLD9 = ' + str(row[15]) + ', DUMFLD10 = ' + str(row[16]) + ', DUMFLD11 = ' + str(row[17]) + ', DUMFLD12 = ' + str(row[18]) + ', DUMFLD13 = ' + str(row[19]) + ', DUMFLD14 = ' + str(row[20]) + ', DUMFLD15 = ' + str(row[21]) + ', DUMFLD16 = ' + str(row[22]) + ', DUMFLD17 = ' + str(row[23]) + ', DUMFLD18 = ' + str(row[24]) + ', DUMFLD19 = ' + str(row[25]) + ', DUMFLD20 = ' + str(row[26]) + ', INPT_SER = ' + str(row[27]) + ', ACCTNO = ' + str(row[28]) + ', DE_STATUS = ' + str(row[29]) + ', DECOMMFLAG = ' + str(row[30]) + ', PARENTID = ' + str(row[31]) + ', PARENTREC = ' + str(row[32]) + ', COPYNO = ' + str(row[33])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
-			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -196,7 +198,6 @@ def getTuplesFromBurns(myCursor):
 			timestamp = 'None'
 			otherAttributes = 'PART_BURN = ' + str(row[0]) + ', PERC_BURN = ' + str(row[1]) + ', PHASE_COPY = ' + str(row[2]) + ', CAREPHASE = ' + str(row[3]) + ', DUMFLD1 = ' + str(row[4]) + ', DUMFLD2 = ' + str(row[5]) + ', DUMFLD3 = ' + str(row[6]) + ', DUMFLD4 = ' + str(row[7]) + ', DUMFLD5 = ' + str(row[8]) + ', DUMFLD6 = ' + str(row[9]) + ', DUMFLD7 = ' + str(row[10]) + ', DUMFLD8 = ' + str(row[11]) + ', DUMFLD9 = ' + str(row[12]) + ', DUMFLD10 = ' + str(row[13]) + ', DUMFLD11 = ' + str(row[14]) + ', DUMFLD12 = ' + str(row[15]) + ', DUMFLD13 = ' + str(row[16]) + ', DUMFLD14 = ' + str(row[17]) + ', DUMFLD15 = ' + str(row[18]) + ', DUMFLD16 = ' + str(row[19]) + ', DUMFLD17 = ' + str(row[20]) + ', DUMFLD18 = ' + str(row[21]) + ', DUMFLD19 = ' + str(row[22]) + ', DUMFLD20 = ' + str(row[23]) + ', ACCTNO = ' + str(row[24])  + ', DE_STATUS = ' + str(row[25])  + ', DECOMMFLAG = ' + str(row[26]) + ', PARENTID = ' + str(row[27]) + ', PARENTREC = ' + str(row[28])  + ', COPYNO = ' + str(row[29])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
-			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
 		return patientList
@@ -227,6 +228,8 @@ def getTuplesFromComments(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -251,6 +254,8 @@ def getTuplesFromConsult(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -277,6 +282,8 @@ def getTuplesFromCulture(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -301,6 +308,8 @@ def getTuplesFromDellog(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+			return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -327,6 +336,8 @@ def getTuplesFromDiags(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -351,6 +362,8 @@ def getTuplesFromEmerg(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -377,6 +390,8 @@ def getTuplesFromFinance(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -401,6 +416,8 @@ def getTuplesFromFlddetai(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -427,6 +444,8 @@ def getTuplesFromGenmech(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -451,6 +470,8 @@ def getTuplesFromHemo(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -477,6 +498,8 @@ def getTuplesFromHosprev(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -501,6 +524,8 @@ def getTuplesFromIcu(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -527,6 +552,8 @@ def getTuplesFromInjdets(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -551,6 +578,8 @@ def getTuplesFromInjdiag(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -577,6 +606,8 @@ def getTuplesFromInjmech(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -601,6 +632,8 @@ def getTuplesFromLab(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -627,6 +660,8 @@ def getTuplesFromMaindata(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -651,6 +686,8 @@ def getTuplesFromMortdets(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -677,6 +714,8 @@ def getTuplesFromMtos(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -701,6 +740,8 @@ def getTuplesFromNarrativ(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -727,6 +768,8 @@ def getTuplesFromOprm(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -751,6 +794,8 @@ def getTuplesFromOrgans(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -777,6 +822,8 @@ def getTuplesFromPerhist(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -801,6 +848,8 @@ def getTuplesFromPosthosp(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -827,6 +876,8 @@ def getTuplesFromPreconds(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -851,6 +902,8 @@ def getTuplesFromProtect(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -877,6 +930,8 @@ def getTuplesFromQaissue(myCursor): # PROBLEM WITH CHARACTER
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -901,6 +956,8 @@ def getTuplesFromRadiolog(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -927,6 +984,8 @@ def getTuplesFromReadmit(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -951,6 +1010,8 @@ def getTuplesFromStep(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -977,6 +1038,8 @@ def getTuplesFromSurg(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1001,6 +1064,8 @@ def getTuplesFromSysdefs(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1027,6 +1092,8 @@ def getTuplesFromTLogComm(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1051,6 +1118,8 @@ def getTuplesFromToxianal(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1077,6 +1146,8 @@ def getTuplesFromTra(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1101,6 +1172,8 @@ def getTuplesFromTranlog(myCursor): # IT WON'T RUN!!
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1127,6 +1200,8 @@ def getTuplesFromTransfer(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1151,6 +1226,8 @@ def getTuplesFromTransprt(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1177,6 +1254,8 @@ def getTuplesFromTreatmen(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1201,6 +1280,8 @@ def getTuplesFromTricrit(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1227,6 +1308,8 @@ def getTuplesFromTrmteam(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1251,6 +1334,8 @@ def getTuplesFromTtdetls(myCursor):
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
+
+		return patientList
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1277,6 +1362,8 @@ def getTuplesFromVitals(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1302,6 +1389,8 @@ def getTuplesFromWard(myCursor):
 			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
+		return patientList
+
 	except:
 		print ("ERROR: unable to fetch data")
 		raise
@@ -1309,35 +1398,59 @@ def getTuplesFromWard(myCursor):
 def filter(objectList):
 	try:
 		counter = 0
-		chosenAttribute = input('Filter by: \n 1 = patientId \n 2 = task \n 3 = timestamp \n 4 = otherAttributes')
+		chosenAttribute = input('Filter by: \n 1 = patientId \n 2 = task \n 3 = timestamp \n 4 = otherAttributes \n')
+		chosenValue = input('Type the value: ')
+
 		if chosenAttribute == '1' :
-			chosenAttribute = input(
-			if
+			while counter < len(objectList) :
+				if chosenValue == objectList[counter].patientId :
+					print('patientId: ' + objectList[counter].patientId + ' task: ' + objectList[counter].task + ' timestamp: ' + objectList[counter].timestamp + ' otherAttribute: ' + objectList[counter].otherAttributes + '\n\n')
+				counter += 1
+
 		elif chosenAttribute == '2' :
-			o
+			while counter < len(objectList) :
+				if chosenValue == objectList[counter].task :
+					print('patientId: ' + objectList[counter].patientId + ' task: ' + objectList[counter].task + ' timestamp: ' + objectList[counter].timestamp + ' otherAttribute: ' + objectList[counter].otherAttributes + '\n\n')
+				counter += 1
+
+		elif chosenAttribute == '3' :
+			while counter < len(objectList) :
+				if chosenValue == objectList[counter].timestamp :
+					print('patientId: ' + objectList[counter].patientId + ' task: ' + objectList[counter].task + ' timestamp: ' + objectList[counter].timestamp + ' otherAttribute: ' + objectList[counter].otherAttributes + '\n\n')
+				counter += 1
+
+		elif chosenAttribute == '4' :
+			while counter < len(objectList) :
+				if chosenValue == objectList[counter].otherAttributes :
+					print('patientId: ' + objectList[counter].patientId + ' task: ' + objectList[counter].task + ' timestamp: ' + objectList[counter].timestamp + ' otherAttribute: ' + objectList[counter].otherAttributes + '\n\n')
+				counter += 1
+
 		else :
 			print('Not a valid number!')
-		while counter < len(objectList) :
-			print(objectList[counter].patientId, objectList[counter].task, objectList[counter].timestamp, objectList[counter].otherAttributes)
-			counter =+ 1
-		"""
-		for row in results:
-			patientId = str(row[30])
-			task = 'BURNS'
-			timestamp = 'None'
-			otherAttributes = 'PART_BURN = ' + str(row[0]) + ', PERC_BURN = ' + str(row[1]) + ', PHASE_COPY = ' + str(row[2]) + ', CAREPHASE = ' + str(row[3]) + ', DUMFLD1 = ' + str(row[4]) + ', DUMFLD2 = ' + str(row[5]) + ', DUMFLD3 = ' + str(row[6]) + ', DUMFLD4 = ' + str(row[7]) + ', DUMFLD5 = ' + str(row[8]) + ', DUMFLD6 = ' + str(row[9]) + ', DUMFLD7 = ' + str(row[10]) + ', DUMFLD8 = ' + str(row[11]) + ', DUMFLD9 = ' + str(row[12]) + ', DUMFLD10 = ' + str(row[13]) + ', DUMFLD11 = ' + str(row[14]) + ', DUMFLD12 = ' + str(row[15]) + ', DUMFLD13 = ' + str(row[16]) + ', DUMFLD14 = ' + str(row[17]) + ', DUMFLD15 = ' + str(row[18]) + ', DUMFLD16 = ' + str(row[19]) + ', DUMFLD17 = ' + str(row[20]) + ', DUMFLD18 = ' + str(row[21]) + ', DUMFLD19 = ' + str(row[22]) + ', DUMFLD20 = ' + str(row[23]) + ', ACCTNO = ' + str(row[24])  + ', DE_STATUS = ' + str(row[25])  + ', DECOMMFLAG = ' + str(row[26]) + ', PARENTID = ' + str(row[27]) + ', PARENTREC = ' + str(row[28])  + ', COPYNO = ' + str(row[29])
-			patient = Tuples(patientId, task, timestamp, otherAttributes)
-			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
-			patientList.append(patient)
-
-		return patientList
-		"""
+			raise
+		
 	except:
 		print ("ERROR: unable to filter")
 		raise
-"""
-def output2File():
-"""
+
+def output2File(objectList):
+	counter = 0
+	
+	try:
+		sortedList = []
+		sortedList = sorted(objectList, key = lambda object : (object.timestamp, object.patientId))
+		file = open('trauma2.txt', 'w')
+
+		while counter < len(sortedList) :
+			file.write('patientId: ' + sortedList[counter].patientId + ' task: ' + sortedList[counter].task + ' timestamp: ' + sortedList[counter].timestamp + ' otherAttribute: ' + sortedList[counter].otherAttributes + '\n\n')
+			counter += 1
+		print('File created successfully.')
+		file.close()
+
+	except:
+		print ("ERROR")
+		raise
+
 if __name__ == '__main__':
 	class Tuples:
 		def __init__(self, patientId, task, timestamp, otherAttributes):
@@ -1345,4 +1458,5 @@ if __name__ == '__main__':
 			self.task = task
 			self.timestamp = timestamp
 			self.otherAttributes = otherAttributes
+
 	main()
