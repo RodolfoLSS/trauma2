@@ -113,7 +113,7 @@ def main():
 		objectList = getTuplesFromWard(myCursor)
 	else: 
 		print ('Type a valid table name.\n')
-		raise
+		sys.exit(0)
 
 	myConnection.close()
 	myCursor.close()
@@ -125,7 +125,7 @@ def main():
 		output2File(objectList)
 	else :
 		print('Not a valid number!')
-		raise
+		sys.exit(0)
 
 def getTuplesFromAcctHist(myCursor):
 	print ('Testing AcctHist!') 
@@ -1427,7 +1427,7 @@ def filter(objectList):
 
 		else :
 			print('Not a valid number!')
-			raise
+			sys.exit(0)
 		
 	except:
 		print ("ERROR: unable to filter")
