@@ -909,7 +909,7 @@ def getTuplesFromProtect(myCursor):
 		print ("ERROR: unable to fetch data")
 		raise
 
-def getTuplesFromQaissue(myCursor): # PROBLEM WITH CHARACTER
+def getTuplesFromQaissue(myCursor):
 	print('Testing QAISSUE!') 
 	
     # Getting tuples
@@ -925,9 +925,9 @@ def getTuplesFromQaissue(myCursor): # PROBLEM WITH CHARACTER
 			patientId = str(row[54])
 			task = 'QAISSUE'
 			timestamp = str(row[8])
-			otherAttributes = 'CAREPHASE = ' + str(row[0]) + ', ORG_DATE = ' + str(row[1]) + ', QA_ISSUE = ' + str(row[2]) + ', PRIM_CAUSE = ' + str(row[3]) + ', REVIEW_BY = ' + str(row[4]) + ', REVIEW_DAT = ' + str(row[5]) + ', RECOMD = ' + str(row[6]) + ', RESOLUTE = ' + str(row[7]) + ', IS_DESCRIP = ' + str(row[9]) + ', DOC_NAME = ' + str(row[10]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', FACTOR = ' + str(row[11]) + ', MORBIDITY = ' + str(row[12]) + ', MORTABILITY = ' + str(row[13]) + ', QI_MEMO = ' + str(row[14]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', DUMFLD1 = ' + str(row[15]) + ', DUMFLD2 = ' + str(row[16]) + ', DUMFLD3 = ' + str(row[17]) + ', DUMFLD4 = ' + str(row[18]) + ', DUMFLD5 = ' + str(row[19]) + ', DUMFLD6 = ' + str(row[20]) + ', DUMFLD7 = ' + str(row[21]) + ', DUMFLD8 = ' + str(row[22]) + ', DUMFLD9 = ' + str(row[23]) + ', DUMFLD10 = ' + str(row[24]) + ', DUMFLD11 = ' + str(row[25]) + ', DUMFLD12 = ' + str(row[26]) + ', DUMFLD13 = ' + str(row[27]) + ', DUMFLD14 = ' + str(row[28]) + ', DUMFLD15 = ' + str(row[29]) + ', DUMFLD16 = ' + str(row[30]) + ', DUMFLD17 = ' + str(row[31]) + ', DUMFLD18 = ' + str(row[32]) + ', DUMFLD19 = ' + str(row[33]) + ', DUMFLD20 = ' + str(row[34]) + ', QA_PDA = ' + str(row[35]) + ', QA_PDA2 = ' + str(row[36]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', ACTION = ' + str(row[37]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', REFERTO = ' + str(row[38]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', LOCATION = ' + str(row[39]) + ', TPM_R_DATE = ' + str(row[40]) + ', TMD_R_DATE = ' + str(row[41]) + ', HX_FLU = ' + str(row[42]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', QA_EVENT = ' + str(row[43]) + ', SYSREL = ' + str(row[44]) + ', DISREL = ' + str(row[45]) + ', PROVEL = ' + str(row[46]) + ', STATUS = ' + str(row[47]) + ', ACCTNO = ' + str(row[48]) + ', DE_STATUS = ' + str(row[49]) + ', DECOMMFLAG = ' + str(row[50]) + ', PARENTID = ' + str(row[51]) + ', PARENTREC = ' + str(row[52]) + ', COPYNO = ' + str(row[53])
+			problematicString = 'None'
+			otherAttributes = 'CAREPHASE = ' + str(row[0]) + ', ORG_DATE = ' + str(row[1]) + ', QA_ISSUE = ' + str(row[2]) + ', PRIM_CAUSE = ' + str(row[3]) + ', REVIEW_BY = ' + str(row[4]) + ', REVIEW_DAT = ' + str(row[5]) + ', RECOMD = ' + str(row[6]) + ', RESOLUTE = ' + str(row[7]) + ', IS_DESCRIP = ' + str(row[9]) + ', DOC_NAME = ' + str(row[10]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', FACTOR = ' + str(row[11]) + ', MORBIDITY = ' + str(row[12]) + ', MORTABILITY = ' + str(row[13]) + ', QI_MEMO = ' + str(row[14]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', DUMFLD1 = ' + str(row[15]) + ', DUMFLD2 = ' + str(row[16]) + ', DUMFLD3 = ' + str(row[17]) + ', DUMFLD4 = ' + str(row[18]) + ', DUMFLD5 = ' + str(row[19]) + ', DUMFLD6 = ' + str(row[20]) + ', DUMFLD7 = ' + str(row[21]) + ', DUMFLD8 = ' + str(row[22]) + ', DUMFLD9 = ' + str(row[23]) + ', DUMFLD10 = ' + str(row[24]) + ', DUMFLD11 = ' + str(row[25]) + ', DUMFLD12 = ' + str(row[26]) + ', DUMFLD13 = ' + str(row[27]) + ', DUMFLD14 = ' + str(row[28]) + ', DUMFLD15 = ' + str(row[29]) + ', DUMFLD16 = ' + str(row[30]) + ', DUMFLD17 = ' + str(row[31]) + ', DUMFLD18 = ' + str(row[32]) + ', DUMFLD19 = ' + str(row[33]) + ', DUMFLD20 = ' + str(row[34]) + ', QA_PDA = ' + str(row[35]) + ', QA_PDA2 = ' + str(row[36]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', ACTION = ' + str(row[37]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', REFERTO = ' + str(row[38]).replace(u"\u2019", "'").replace(u"\u201c", '"').replace(u"\u201d", '"').replace(u"\u2014", '-').replace(u"\u2026", '...').replace(u"\u2013", '-').replace(u"\u2018", "'") + ', LOCATION = ' + str(row[39]) + ', TPM_R_DATE = ' + str(row[40]) + ', TMD_R_DATE = ' + str(row[41]) + ', HX_FLU = ' + problematicString + ', QA_EVENT = ' + str(row[43]) + ', SYSREL = ' + str(row[44]) + ', DISREL = ' + str(row[45]) + ', PROVEL = ' + str(row[46]) + ', STATUS = ' + str(row[47]) + ', ACCTNO = ' + str(row[48]) + ', DE_STATUS = ' + str(row[49]) + ', DECOMMFLAG = ' + str(row[50]) + ', PARENTID = ' + str(row[51]) + ', PARENTREC = ' + str(row[52]) + ', COPYNO = ' + str(row[53])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
-			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
 		return patientList
@@ -1170,7 +1170,7 @@ def getTuplesFromTranlog(myCursor): # IT WON'T RUN!!
 			timestamp = str(row[11])
 			otherAttributes = 'acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]) + ', fieldstat = ' + str(row[8]) + ', memofldval = ' + str(row[9]) + ', genfldval = ' + str(row[10]) + ', trantime = ' + str(row[12]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
-			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			#print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
 		return patientList
@@ -1395,7 +1395,7 @@ def getTuplesFromWard(myCursor):
 		print ("ERROR: unable to fetch data")
 		raise
 
-def filter(objectList):
+def filter(objectList): # Outputs the objects filtered by attributes
 	try:
 		counter = 0
 		chosenAttribute = input('Filter by: \n 1 = patientId \n 2 = task \n 3 = timestamp \n 4 = otherAttributes \n')
@@ -1433,7 +1433,7 @@ def filter(objectList):
 		print ("ERROR: unable to filter")
 		raise
 
-def output2File(objectList):
+def output2File(objectList): # Writes a files with all objects ranked by timestamp
 	counter = 0
 	
 	try:
@@ -1450,6 +1450,135 @@ def output2File(objectList):
 	except:
 		print ("ERROR")
 		raise
+
+def main():
+	import pypyodbc
+	import sys
+
+	# Database connection
+	print('Trying to connect to the database...')
+
+	try:
+		myConnection = pypyodbc.connect('Driver={SQL Server};'
+									'Server=localhost;'
+									'Database=Trauma2;'
+									'uid=Rodolfo;pwd=Trauma2')
+		myCursor = myConnection.cursor()
+		print('Connected.')
+	except:
+		print('Could not connect:', sys.exc_info()[0])
+
+	tableName = input('Table name: ')
+
+	if tableName == 'AcctHist':
+		objectList = getTuplesFromAcctHist(myCursor)
+	elif tableName == 'ADM_INPT':
+		objectList = getTuplesFromAdm_inpt(myCursor)
+	elif tableName == 'BURNS': 
+		objectList = getTuplesFromBurns(myCursor)
+	elif tableName == 'comments': 
+		objectList = getTuplesFromComments(myCursor) 
+	elif tableName == 'CONSULT': 
+		objectList = getTuplesFromConsult(myCursor)
+	elif tableName == 'CULTURE': 
+		objectList = getTuplesFromCulture(myCursor)
+	elif tableName == 'dellog': 
+		objectList = getTuplesFromDellog(myCursor)
+	elif tableName == 'DIAGS': 
+		objectList = getTuplesFromDiags(myCursor)
+	elif tableName == 'EMERG':
+	    objectList = getTuplesFromEmerg(myCursor)
+	elif tableName == 'FINANCE': 
+		objectList = getTuplesFromFinance(myCursor)
+	elif tableName == 'FLDDETAI': 
+		objectList = getTuplesFromFlddetai(myCursor)
+	elif tableName == 'GENMECH': 
+		objectList = getTuplesFromGenmech(myCursor)
+	elif tableName == 'HEMO': 
+		objectList = getTuplesFromHemo(myCursor)
+	elif tableName == 'HOSPREV':
+		objectList = getTuplesFromHosprev(myCursor)
+	elif tableName == 'ICU':
+		objectList = getTuplesFromIcu(myCursor)
+	elif tableName == 'INJDETS':
+		objectList = getTuplesFromInjdets(myCursor)
+	elif tableName == 'INJDIAG':
+		objectList = getTuplesFromInjdiag(myCursor)
+	elif tableName == 'INJMECH':
+		objectList = getTuplesFromInjmech(myCursor)
+	elif tableName == 'LAB':
+		objectList = getTuplesFromLab(myCursor)
+	elif tableName == 'MAINDATA':
+		objectList = getTuplesFromMaindata(myCursor)
+	elif tableName == 'MORTDETS':
+		objectList = getTuplesFromMortdets(myCursor)
+	elif tableName == 'MTOS':
+		objectList = getTuplesFromMtos(myCursor)
+	elif tableName == 'NARRATIV':
+		objectList = getTuplesFromNarrativ(myCursor)
+	elif tableName == 'OPRM':
+		objectList = getTuplesFromOprm(myCursor)
+	elif tableName == 'ORGANS':
+		objectList = getTuplesFromOrgans(myCursor)
+	elif tableName == 'PERHIST':
+		objectList = getTuplesFromPerhist(myCursor)
+	elif tableName == 'POSTHOSP':
+		objectList = getTuplesFromPosthosp(myCursor)
+	elif tableName == 'PRECONDS':
+		objectList = getTuplesFromPreconds(myCursor)
+	elif tableName == 'PROTECT':
+		objectList = getTuplesFromProtect(myCursor)
+	elif tableName == 'QAISSUE':
+		objectList = getTuplesFromQaissue(myCursor)
+	elif tableName == 'RADIOLOG':
+		objectList = getTuplesFromRadiolog(myCursor)
+	elif tableName == 'READMIT':
+		objectList = getTuplesFromReadmit(myCursor)
+	elif tableName == 'STEP':
+		objectList = getTuplesFromStep(myCursor)
+	elif tableName == 'SURG':
+		objectList = getTuplesFromSurg(myCursor)
+	elif tableName == 'sysdefs':
+		objectList = getTuplesFromSysdefs(myCursor)
+	elif tableName == 'TLogComm':
+		objectList = getTuplesFromTLogComm(myCursor)
+	elif tableName == 'TOXIANAL':
+		objectList = getTuplesFromToxianal(myCursor)
+	elif tableName == 'TRA':
+		objectList = getTuplesFromTra(myCursor)
+	elif tableName == 'tranlog':
+		objectList = getTuplesFromTranlog(myCursor)
+	elif tableName == 'TRANSFER':
+		objectList = getTuplesFromTransfer(myCursor)
+	elif tableName == 'TRANSPRT':
+		objectList = getTuplesFromTransprt(myCursor)
+	elif tableName == 'TREATMEN':
+		objectList = getTuplesFromTreatmen(myCursor)
+	elif tableName == 'TRICRIT':
+		objectList = getTuplesFromTricrit(myCursor)
+	elif tableName == 'TRMTEAM':
+		objectList = getTuplesFromTrmteam(myCursor)
+	elif tableName == 'TTDETLS':
+		objectList = getTuplesFromTtdetls(myCursor)
+	elif tableName == 'VITALS':
+		objectList = getTuplesFromVitals(myCursor)
+	elif tableName == 'WARD':
+		objectList = getTuplesFromWard(myCursor)
+	else: 
+		print ('Type a valid table name.\n')
+		sys.exit(0)
+
+	myConnection.close()
+	myCursor.close()
+
+	function = input('Type 1 to filter by attributes or 2 to sort by timestamp: ')
+	if function == '1' :
+		filter(objectList)
+	elif function == '2' :
+		output2File(objectList)
+	else :
+		print('Not a valid number!')
+		sys.exit(0)
 
 if __name__ == '__main__':
 	class Tuples:
