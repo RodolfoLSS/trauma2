@@ -17,6 +17,8 @@ def main():
 
 	tableName = input('Table name: ')
 
+	function = input('Type 1 to filter by attributes or 2 to sort by timestamp: ')
+
 	if tableName == 'AcctHist':
 		objectList = getTuplesFromAcctHist(myCursor)
 	elif tableName == 'ADM_INPT':
@@ -94,7 +96,7 @@ def main():
 	elif tableName == 'TRA':
 		objectList = getTuplesFromTra(myCursor)
 	elif tableName == 'tranlog':
-		objectList = getTuplesFromTranlog(myCursor)
+		objectList = getTuplesFromTranlog(myCursor, function)
 	elif tableName == 'TRANSFER':
 		objectList = getTuplesFromTransfer(myCursor)
 	elif tableName == 'TRANSPRT':
@@ -115,10 +117,6 @@ def main():
 		print ('Type a valid table name.\n')
 		sys.exit(0)
 
-	myConnection.close()
-	myCursor.close()
-
-	function = input('Type 1 to filter by attributes or 2 to sort by timestamp: ')
 	if function == '1' :
 		filter(objectList)
 	elif function == '2' :
@@ -126,6 +124,9 @@ def main():
 	else :
 		print('Not a valid number!')
 		sys.exit(0)
+
+	myConnection.close()
+	myCursor.close()
 
 def getTuplesFromAcctHist(myCursor):
 	print ('Testing AcctHist!') 
@@ -1157,23 +1158,42 @@ def getTuplesFromTranlog(myCursor): # IT WON'T RUN!!
 	
     # Getting tuples
 	try:
-		SQLSelectCommand = ('SELECT *'
-							'FROM TRAUMA2.tranlog')
+		SQLSelectCommand = ("SELECT DISTINCT acctno \
+							FROM TRAUMA2.tranlog")
 		myCursor.execute(SQLSelectCommand)
 		results = myCursor.fetchall()
 
 		patientList = []
+		for row in results:
+			print(row[0])
+			fetchTuplesFromTranlog(row[0], patientList, myCursor)
 
+		return patientList
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
+def fetchTuplesFromTranlog(acctno, patientList, myCursor):
+	# be careful about the list
+	try:
+		SQLSelectCommand = ("SELECT * \
+							FROM TRAUMA2.tranlog \
+							WHERE acctno = %d" % (acctno) )
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+		
 		for row in results:
 			patientId = str(row[0])
 			task = 'tranlog'
 			timestamp = str(row[11])
-			otherAttributes = 'acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]) + ', fieldstat = ' + str(row[8]) + ', memofldval = ' + str(row[9]) + ', genfldval = ' + str(row[10]) + ', trantime = ' + str(row[12]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14])
+			problematicString = 'None'
+			otherAttributes = 'acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', trantime = ' + str(row[12]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14])
 			patient = Tuples(patientId, task, timestamp, otherAttributes)
-			#print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			patientList.append(patient)
 
-		return patientList
+		return 0
 
 	except:
 		print ("ERROR: unable to fetch data")
