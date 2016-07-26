@@ -1153,6 +1153,74 @@ def getTuplesFromTra(myCursor):
 		print ("ERROR: unable to fetch data")
 		raise
 
+def getTuplesFromTranlogByYear(myCursor):
+	print('Testing tranlog!') 
+	
+    # Getting tuples
+	try:
+		SQLSelectCommand = ("SELECT DISTINCT YEAR(trandate)\
+							FROM TRAUMA2.tranlog\
+							ORDER BY YEAR(trandate)")
+		myCursor.execute(SQLSelectCommand)
+		results = myCursor.fetchall()
+
+		patientList = []
+
+		for row in results:
+			print(str(row[0]) + '\n\n\n\n\n\n\n\n\n\n\n\n')
+			fetchTuplesFromTranlogByYear(row[0], patientList, myCursor)
+
+		sys.exit(0)
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
+def fetchTuplesFromTranlogByYear(year, patientList, myCursor):
+	# be careful about the list
+	try:
+		if(year == 2007):
+			file = open('tranlog_07.txt', 'w')
+		elif(year == 2008):
+			file = open('tranlog_08.txt', 'w')
+		elif(year == 2009):
+			file = open('tranlog_09.txt', 'w')
+		elif(year == 2010):
+			file = open('tranlog_10.txt', 'w')
+		elif(year == 2011):
+			file = open('tranlog_11.txt', 'w')
+
+		SQLSelectCommand = ("SELECT * \
+							FROM TRAUMA2.tranlog \
+							WHERE YEAR(trandate) = %d\
+							ORDER BY trandate, trantime" % (year))
+		myCursor.execute(SQLSelectCommand)
+		
+		results = myCursor.fetchall()
+		
+		#print('patientId     ' + 'task      ' + 'timestamp              ' + 'acctno          ' + 'acc_path            ' + 'copyid              ' + '')
+
+		for row in results:
+			#patientId = str(row[0])
+			#task = 'tranlog'
+			#timestamp = str(row[11])
+			problematicString = 'None'
+			#otherAttributes = 'acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', trantime = ' + str(row[12]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14])
+			#patient = Tuples(patientId, task, timestamp, otherAttributes)
+			#print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
+			print('patientId: ' + str(row[0]) + ' task: tranlog,' + ' timestamp: ' + str(row[11]) + ' ' + str(row[12]) + ', acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14]))
+			#patientList.append(patient)
+			file.write('patientId: ' + str(row[0]) + ' task: tranlog,' + ' timestamp: ' + str(row[11]) + ' ' + str(row[12]) + ', acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14]) + '\n\n')
+		
+		print('File created successfully.')
+		file.close()
+		
+		return 0
+
+	except:
+		print ("ERROR: unable to fetch data")
+		raise
+
 def getTuplesFromTranlog(myCursor): # IT WON'T RUN!!
 	print('Testing tranlog!') 
 	
@@ -1567,7 +1635,7 @@ def main():
 	elif tableName == 'TRA':
 		objectList = getTuplesFromTra(myCursor)
 	elif tableName == 'tranlog':
-		objectList = getTuplesFromTranlog(myCursor)
+		objectList = getTuplesFromTranlogByYear(myCursor)
 	elif tableName == 'TRANSFER':
 		objectList = getTuplesFromTransfer(myCursor)
 	elif tableName == 'TRANSPRT':
