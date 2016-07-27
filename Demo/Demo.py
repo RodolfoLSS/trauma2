@@ -1170,7 +1170,7 @@ def getTuplesFromTranlogByYear(myCursor):
 			print(str(row[0]) + '\n\n\n\n\n\n\n\n\n\n\n\n')
 			fetchTuplesFromTranlogByYear(row[0], patientList, myCursor)
 
-		sys.exit(0)
+		return 0
 
 	except:
 		print ("ERROR: unable to fetch data")
@@ -1198,8 +1198,6 @@ def fetchTuplesFromTranlogByYear(year, patientList, myCursor):
 		
 		results = myCursor.fetchall()
 		
-		#print('patientId     ' + 'task      ' + 'timestamp              ' + 'acctno          ' + 'acc_path            ' + 'copyid              ' + '')
-
 		for row in results:
 			#patientId = str(row[0])
 			#task = 'tranlog'
@@ -1207,9 +1205,7 @@ def fetchTuplesFromTranlogByYear(year, patientList, myCursor):
 			problematicString = 'None'
 			#otherAttributes = 'acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', trantime = ' + str(row[12]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14])
 			#patient = Tuples(patientId, task, timestamp, otherAttributes)
-			#print(patient.patientId, patient.task, patient.timestamp, patient.otherAttributes)
 			print('patientId: ' + str(row[0]) + ' task: tranlog,' + ' timestamp: ' + str(row[11]) + ' ' + str(row[12]) + ', acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14]))
-			#patientList.append(patient)
 			file.write('patientId: ' + str(row[0]) + ' task: tranlog,' + ' timestamp: ' + str(row[11]) + ' ' + str(row[12]) + ', acctno = ' + str(row[1]) + ', acc_path = ' + str(row[2]) + ', copyid = ' + str(row[3]) + ', action = ' + str(row[4]) + ', fieldname = ' + str(row[5]) + ', fieldtype = ' + str(row[6]) + ', fieldval = ' + str(row[7]).replace(u"\u0178", "Y") + ', fieldstat = ' + str(row[8]) + ', memofldval = ' +  problematicString + ', genfldval = ' + str(row[10]) + ', tranuser = ' + str(row[13]) + ', transtn = ' + str(row[14]) + '\n\n')
 		
 		print('File created successfully.')
@@ -1636,6 +1632,7 @@ def main():
 		objectList = getTuplesFromTra(myCursor)
 	elif tableName == 'tranlog':
 		objectList = getTuplesFromTranlogByYear(myCursor)
+		sys.exit(0)
 	elif tableName == 'TRANSFER':
 		objectList = getTuplesFromTransfer(myCursor)
 	elif tableName == 'TRANSPRT':
