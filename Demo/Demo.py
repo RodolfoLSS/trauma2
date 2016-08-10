@@ -9,7 +9,7 @@ def main():
 		myConnection = pypyodbc.connect('Driver={SQL Server};'
 									'Server=localhost;'
 									'Database=Trauma2;'
-									'uid=Rodolfo;pwd=Trauma2')
+									'uid=Rodolfo;pwd=trauma2')
 		myCursor = myConnection.cursor()
 		print('Connected.')
 	except:

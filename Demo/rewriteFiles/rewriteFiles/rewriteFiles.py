@@ -2,6 +2,7 @@ def main():
 	try:
 		oldFile07 = open('tranlog_07.txt', 'r')
 		newFile07 = open('newTranlog_07.txt', 'w')
+		"""
 		oldFile08 = open('tranlog_08.txt', 'r')
 		newFile08 = open('newTranlog_08.txt', 'w')
 		oldFile09 = open('tranlog_09.txt', 'r')
@@ -9,7 +10,7 @@ def main():
 		oldFile10 = open('tranlog_10.txt', 'r')
 		newFile10 = open('newTranlog_10.txt', 'w')
 		oldFile11 = open('tranlog_11.txt', 'r')
-		newFile11 = open('newTranlog_11.txt', 'w')
+		newFile11 = open('newTranlog_11.txt', 'w')"""
 
 	except:
 		print("Unable to open files.")
@@ -23,7 +24,7 @@ def main():
 		file07 = []
 		oldFile07.close()
 		newFile07.close()
-
+		"""
 		file08 = oldFile08.read()
 		tuples08 = file08.split('\n\n')
 		writeFile(tuples08, newFile08)
@@ -54,7 +55,7 @@ def main():
 		tuples11.clear()
 		file11 = []
 		oldFile11.close()
-		newFile11.close()
+		newFile11.close()"""
 
 	except:
 		print("Error reading files")
@@ -95,21 +96,31 @@ def writeFile(tuples, file):
 
 			attributes = lines.split(' ')
 			acctNo = attributes[10].replace(',','')
+			dicAcctNo = {}################################ AQUI AQUI AQUI AQUI ################################
 			currentAcctNo = acctNo
 			time = attributes[7].replace(',','')
-			timestamp = attributes[5] + ' ' + attributes[6] + ' ' + time
+
+			if(attributes[6] == '00:00:00'): # adjusting timestamps
+				h = time[0] + time[1]
+				m = time[2] + time[3]
+				s = time[4] + time[5]
+				timestamp = attributes[5] + ' ' + h + ':' + m + ':' + s
+			else:
+				timestamp = attributes[5] + ' ' + attributes[6] 
+
 			currentTime = attributes[6]
 			currentDate = attributes[5]
 			currentComplement = time
 
 			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement and currentAcctNo == oldAcctNo:
-				counter += 1
+				counter += 1 # merging repeated lines by skiping them
+				##### ADJUST THE REST OF THE LINE BC IT'S WRONG
 			else:
 				if currentAcctNo != oldAcctNo:
-					oldAcctNo = currentAcctNo
+					#oldAcctNo = currentAcctNo
 					lineNumberForEachAcctNo += 1
 
-				file.write(str(lineNumber) + ' ' + str(acctNo) + ' ' + str(lineNumberForEachAcctNo) + ' tranlog ' + str(timestamp) + ' # ' + str(restAttr) + '\n\n')
+				file.write(str(lineNumber) + ' ' + str(acctNo) + ' ' + str(lineNumberForEachAcctNo) + ' ????? ' + str(timestamp) + ' # ' + str(restAttr) + '\n\n')
 				oldTime = currentTime
 				oldDate = currentDate
 				oldComplement = currentComplement
