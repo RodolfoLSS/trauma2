@@ -65,39 +65,29 @@ def writeFile(tuples, file):
 	try:
 		lineNumber = 1
 		counter = 0
-		lineNumberForEachAcctNo = 0
-		currentAcctNo = 0
-		oldAcctNo = 0
 		currentTime = 0
 		currentDate = 0
 		currentComplement = 0
 		oldTime = 0 
 		oldDate = 0
 		oldComplement = 0
+		dicAcctNo = {}
 
 		while counter < (len(tuples)-1) :
 			lines = tuples[counter]
 			print(lines)
-			otherAttributes = lines.split('acc_path')
-			rest = 'acc_path' + otherAttributes[1].lower()
-			rest = rest.replace('acc_path','acc_Path').replace('copyid','copyId').replace('fieldname','fieldName').replace('fieldtype','fieldType').replace('fieldval','fieldVal').replace('fieldstat','fieldStat').replace('memofldval','memoFldVal').replace('genfldval','genFldVal').replace('tranuser','tranUser').replace('transtn','tranStn').replace(' = ','=').replace(',','')
-			
-			beginning = rest.find('fieldVal') # replacing blank spaces for underscores
-			beginning += 9
-			ending = rest.find(' fieldStat')
-			restAttr = rest[0:beginning]
-			while beginning < ending:
-				if rest[beginning] == ' ':
-					restAttr = restAttr + '_'
-				else:
-					restAttr = restAttr + rest[beginning]
-				beginning += 1
-			restAttr = restAttr + rest[ending:]
+
+			cutFieldName = lines.split('fieldname = ') # trimming fieldname out the whole line of attributes
+			tempFieldName = cutFieldName[1].split('fieldtype')
+			fieldName = tempFieldName[0].replace(', ','').replace(' ','_').lower()
+
+			cutFieldValue = lines.split('fieldval = ') # trimming fieldvalue out the whole line of attributes
+			tempFieldValue = cutFieldValue[1].split('fieldstat')
+			fieldValue = tempFieldValue[0].replace(', ','').replace(' ','_').lower()
 
 			attributes = lines.split(' ')
 			acctNo = attributes[10].replace(',','')
-			dicAcctNo = {}################################ AQUI AQUI AQUI AQUI ################################
-			currentAcctNo = acctNo
+
 			time = attributes[7].replace(',','')
 
 			if(attributes[6] == '00:00:00'): # adjusting timestamps
@@ -112,15 +102,22 @@ def writeFile(tuples, file):
 			currentDate = attributes[5]
 			currentComplement = time
 
-			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement and currentAcctNo == oldAcctNo:
+			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement:
 				counter += 1 # merging repeated lines by skiping them
+				file.write('  ' + fieldName + '=' + fieldValue)
 				##### ADJUST THE REST OF THE LINE BC IT'S WRONG
 			else:
-				if currentAcctNo != oldAcctNo:
-					#oldAcctNo = currentAcctNo
-					lineNumberForEachAcctNo += 1
+				# conditions for the file writing
+				if acctNo in dicAcctNo:
+					dicAcctNo[acctNo] += 1
+				else:
+					dicAcctNo[acctNo] = 1
+				lineNumberForEachAcctNo = dicAcctNo[acctNo]
 
-				file.write(str(lineNumber) + ' ' + str(acctNo) + ' ' + str(lineNumberForEachAcctNo) + ' ????? ' + str(timestamp) + ' # ' + str(restAttr) + '\n\n')
+				if counter != 0:
+					file.write('\n\n')
+
+				file.write(str(lineNumber) + ' ' + str(acctNo) + ' ' + str(lineNumberForEachAcctNo) + ' ????? ' + str(timestamp) + ' # ' + fieldName + '=' + fieldValue)
 				oldTime = currentTime
 				oldDate = currentDate
 				oldComplement = currentComplement
