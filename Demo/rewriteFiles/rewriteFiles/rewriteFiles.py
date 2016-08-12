@@ -1,9 +1,9 @@
-def main():
+def main(): 
+
 	try:
 		oldFile07 = open('tranlog_07.txt', 'r')
 		newFile07 = open('newTranlog_07.txt', 'w')
-		"""
-		oldFile08 = open('tranlog_08.txt', 'r')
+		"""oldFile08 = open('tranlog_08.txt', 'r')
 		newFile08 = open('newTranlog_08.txt', 'w')
 		oldFile09 = open('tranlog_09.txt', 'r')
 		newFile09 = open('newTranlog_09.txt', 'w')
@@ -62,6 +62,22 @@ def main():
 		raise
 
 def writeFile(tuples, file):
+	import pypyodbc
+	import sys
+
+	# Database connection
+	print('Trying to connect to the database...')
+
+	try:
+		myConnection = pypyodbc.connect('Driver={SQL Server};'
+									'Server=localhost;'
+									'Database=Trauma2;'
+									'uid=Rodolfo;pwd=trauma2')
+		myCursor = myConnection.cursor()
+		print('Connected.')
+	except:
+		print('Could not connect:', sys.exc_info()[0])
+
 	try:
 		lineNumber = 1
 		counter = 0
@@ -84,6 +100,22 @@ def writeFile(tuples, file):
 			cutFieldValue = lines.split('fieldval = ') # trimming fieldvalue out the whole line of attributes
 			tempFieldValue = cutFieldValue[1].split('fieldstat')
 			fieldValue = tempFieldValue[0].replace(', ','').replace(' ','_').lower()
+			
+			if fieldName != 'none':
+
+				try:
+					SQLSelectCommand = ("SELECT DISTINCT c.name AS ColName, t.name AS TableName \
+										FROM sys.columns c \
+										JOIN sys.tables t ON c.object_id = t.object_id\
+										WHERE  c.name LIKE %s" % (fieldName) )
+					myCursor.execute(SQLSelectCommand)
+					tableName = myCursor.fetchone()
+				except:
+					print ("ERROR: unable to fetch data")
+					raise
+
+			else:
+				tableName = 'none'
 
 			attributes = lines.split(' ')
 			acctNo = attributes[10].replace(',','')
@@ -103,9 +135,8 @@ def writeFile(tuples, file):
 			currentComplement = time
 
 			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement:
-				counter += 1 # merging repeated lines by skiping them
+				counter += 1 # merging repeated lines by skiping them and writing the complement on the past line
 				file.write('  ' + fieldName + '=' + fieldValue)
-				##### ADJUST THE REST OF THE LINE BC IT'S WRONG
 			else:
 				# conditions for the file writing
 				if acctNo in dicAcctNo:
@@ -117,7 +148,7 @@ def writeFile(tuples, file):
 				if counter != 0:
 					file.write('\n\n')
 
-				file.write(str(lineNumber) + ' ' + str(acctNo) + ' ' + str(lineNumberForEachAcctNo) + ' ????? ' + str(timestamp) + ' # ' + fieldName + '=' + fieldValue)
+				file.write(str(lineNumber) + ' ' + str(acctNo) + ' ' + str(lineNumberForEachAcctNo) + ' ' + str(tableName) + ' ' + str(timestamp) + ' # ' + fieldName + '=' + fieldValue)
 				oldTime = currentTime
 				oldDate = currentDate
 				oldComplement = currentComplement
