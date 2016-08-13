@@ -88,6 +88,7 @@ def writeFile(tuples, file):
 		oldDate = 0
 		oldComplement = 0
 		dicAcctNo = {}
+		dicTableName = {}
 
 		while counter < (len(tuples)-1) :
 			lines = tuples[counter]
@@ -100,16 +101,29 @@ def writeFile(tuples, file):
 			cutFieldValue = lines.split('fieldval = ') # trimming fieldvalue out the whole line of attributes
 			tempFieldValue = cutFieldValue[1].split('fieldstat')
 			fieldValue = tempFieldValue[0].replace(', ','').replace(' ','_').lower()
+
+			cutAcc_Path = lines.split('acc_path = ') # trimming acc_path out the whole line of attributes
+			tempAcc_Path = cutAcc_Path[1].split('copyid')
+			acc_path = tempAcc_Path[0].replace(', ','').replace(' ','_').lower()
+			print('\n acc_path = ' + acc_path+'\n')
 			
 			if fieldName != 'none':
 
 				try:
+					print('##')
 					SQLSelectCommand = ("SELECT DISTINCT c.name AS ColName, t.name AS TableName \
 										FROM sys.columns c \
-										JOIN sys.tables t ON c.object_id = t.object_id\
-										WHERE  c.name LIKE %s" % (fieldName) )
+										JOIN sys.tables t ON c.object_id = t .object_id\
+										WHERE  c.name LIKE '%s'" % (fieldName))
 					myCursor.execute(SQLSelectCommand)
-					tableName = myCursor.fetchone()
+
+					if acc_path in dicTableName:
+						tableName = dicTableName[acc_path]
+					else:
+						tableName = myCursor.fetchone()
+						dicTableName[acc_path] = tableName[1]
+
+					print('\n tableName = ' + dicTableName[acc_path]+'\n')
 				except:
 					print ("ERROR: unable to fetch data")
 					raise
