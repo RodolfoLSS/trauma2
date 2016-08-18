@@ -1,15 +1,15 @@
 def main(): 
 
 	try:
-		oldFile07 = open('tranlog_07.txt', 'r')
+		"""oldFile07 = open('tranlog_07.txt', 'r')
 		newFile07 = open('newTranlog_07.txt', 'w')
-		"""oldFile08 = open('tranlog_08.txt', 'r')
+		oldFile08 = open('tranlog_08.txt', 'r')
 		newFile08 = open('newTranlog_08.txt', 'w')
 		oldFile09 = open('tranlog_09.txt', 'r')
-		newFile09 = open('newTranlog_09.txt', 'w')
+		newFile09 = open('newTranlog_09.txt', 'w')"""
 		oldFile10 = open('tranlog_10.txt', 'r')
 		newFile10 = open('newTranlog_10.txt', 'w')
-		oldFile11 = open('tranlog_11.txt', 'r')
+		"""oldFile11 = open('tranlog_11.txt', 'r')
 		newFile11 = open('newTranlog_11.txt', 'w')"""
 
 	except:
@@ -17,43 +17,33 @@ def main():
 		raise
 
 	try:
-		file07 = oldFile07.read()
+		"""file07 = oldFile07.read()
 		tuples07 = file07.split('\n\n')
 		writeFile(tuples07, newFile07)
-		tuples07.clear()
-		file07 = []
 		oldFile07.close()
 		newFile07.close()
-		"""
+		
 		file08 = oldFile08.read()
 		tuples08 = file08.split('\n\n')
 		writeFile(tuples08, newFile08)
-		tuples08.clear()
-		file08 = []
 		oldFile08.close()
 		newFile08.close()
 
 		file09 = oldFile09.read()
 		tuples09 = file09.split('\n\n')
 		writeFile(tuples09, newFile09)
-		tuples09.clear()
-		file09 = []
 		oldFile09.close()
-		newFile09.close()
+		newFile09.close()"""
 
 		file10 = oldFile10.read()
 		tuples10 = file10.split('\n\n')
 		writeFile(tuples10, newFile10)
-		tuples10.clear()
-		file10 = []
 		oldFile10.close()
 		newFile10.close()
 
-		file11 = oldFile11.read()
+		"""file11 = oldFile11.read()
 		tuples11 = file11.split('\n\n')
 		writeFile(tuples11, newFile11)
-		tuples11.clear()
-		file11 = []
 		oldFile11.close()
 		newFile11.close()"""
 
@@ -84,6 +74,8 @@ def writeFile(tuples, file):
 		currentTime = 0
 		currentDate = 0
 		currentComplement = 0
+		currentAcc_Path= 0
+		oldAcc_Path = 0
 		oldTime = 0 
 		oldDate = 0
 		oldComplement = 0
@@ -106,11 +98,14 @@ def writeFile(tuples, file):
 			tempAcc_Path = cutAcc_Path[1].split('copyid')
 			acc_path = tempAcc_Path[0].replace(', ','').replace(' ','_').lower()
 			print('\n acc_path = ' + acc_path+'\n')
+			if(acc_path == 'none'):
+				currentAcc_Path = 0
+			else:
+				currentAcc_Path = int(acc_path)
 			
 			if fieldName != 'none':
 
 				try:
-					print('##')
 					SQLSelectCommand = ("SELECT DISTINCT c.name AS ColName, t.name AS TableName \
 										FROM sys.columns c \
 										JOIN sys.tables t ON c.object_id = t .object_id\
@@ -119,9 +114,12 @@ def writeFile(tuples, file):
 
 					if acc_path in dicTableName:
 						tableName = dicTableName[acc_path]
+					elif acc_path == 'none':
+						tableName ='none'
 					else:
-						tableName = myCursor.fetchone()
-						dicTableName[acc_path] = tableName[1]
+						result = myCursor.fetchone()
+						dicTableName[acc_path] = result[1]
+						tableName = result[1]
 
 					print('\n tableName = ' + dicTableName[acc_path]+'\n')
 				except:
@@ -148,7 +146,7 @@ def writeFile(tuples, file):
 			currentDate = attributes[5]
 			currentComplement = time
 
-			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement:
+			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement and currentAcc_Path == oldAcc_Path:
 				counter += 1 # merging repeated lines by skiping them and writing the complement on the past line
 				file.write('  ' + fieldName + '=' + fieldValue)
 			else:
@@ -166,6 +164,7 @@ def writeFile(tuples, file):
 				oldTime = currentTime
 				oldDate = currentDate
 				oldComplement = currentComplement
+				oldAcc_Path = currentAcc_Path
 				lineNumber += 1 
 				counter += 1
 

@@ -1517,7 +1517,7 @@ def filter(objectList): # Outputs the objects filtered by attributes
 		print ("ERROR: unable to filter")
 		raise
 
-def output2File(objectList): # Writes a files with all objects ranked by timestamp
+def output2File(objectList): # Writes a file with all objects ranked by timestamp
 	counter = 0
 	
 	try:
