@@ -1,23 +1,23 @@
 def main(): 
 
 	try:
-		"""oldFile07 = open('tranlog_07.txt', 'r')
+		oldFile07 = open('tranlog_07.txt', 'r')
 		newFile07 = open('newTranlog_07.txt', 'w')
 		oldFile08 = open('tranlog_08.txt', 'r')
 		newFile08 = open('newTranlog_08.txt', 'w')
 		oldFile09 = open('tranlog_09.txt', 'r')
-		newFile09 = open('newTranlog_09.txt', 'w')"""
+		newFile09 = open('newTranlog_09.txt', 'w')
 		oldFile10 = open('tranlog_10.txt', 'r')
 		newFile10 = open('newTranlog_10.txt', 'w')
-		"""oldFile11 = open('tranlog_11.txt', 'r')
-		newFile11 = open('newTranlog_11.txt', 'w')"""
+		oldFile11 = open('tranlog_11.txt', 'r')
+		newFile11 = open('newTranlog_11.txt', 'w')
 
 	except:
 		print("Unable to open files.")
 		raise
 
 	try:
-		"""file07 = oldFile07.read()
+		file07 = oldFile07.read()
 		tuples07 = file07.split('\n\n')
 		writeFile(tuples07, newFile07)
 		oldFile07.close()
@@ -28,12 +28,11 @@ def main():
 		writeFile(tuples08, newFile08)
 		oldFile08.close()
 		newFile08.close()
-
 		file09 = oldFile09.read()
 		tuples09 = file09.split('\n\n')
 		writeFile(tuples09, newFile09)
 		oldFile09.close()
-		newFile09.close()"""
+		newFile09.close()
 
 		file10 = oldFile10.read()
 		tuples10 = file10.split('\n\n')
@@ -41,11 +40,11 @@ def main():
 		oldFile10.close()
 		newFile10.close()
 
-		"""file11 = oldFile11.read()
+		file11 = oldFile11.read()
 		tuples11 = file11.split('\n\n')
 		writeFile(tuples11, newFile11)
 		oldFile11.close()
-		newFile11.close()"""
+		newFile11.close()
 
 	except:
 		print("Error reading files")
@@ -92,7 +91,14 @@ def writeFile(tuples, file):
 
 			cutFieldValue = lines.split('fieldval = ') # trimming fieldvalue out the whole line of attributes
 			tempFieldValue = cutFieldValue[1].split('fieldstat')
-			fieldValue = tempFieldValue[0].replace(', ','').replace(' ','_').lower()
+			' '.join(tempFieldValue[0].split())
+			fieldValueWithSpaces = tempFieldValue[0].replace(', ','').lower().strip()
+			if not fieldValueWithSpaces:
+				fieldValue = 'none'
+			elif fieldValueWithSpaces[0] == ' ':
+				fieldValue = 'none'
+			else:
+				fieldValue = fieldValueWithSpaces.replace(' ','_')
 
 			cutAcc_Path = lines.split('acc_path = ') # trimming acc_path out the whole line of attributes
 			tempAcc_Path = cutAcc_Path[1].split('copyid')
@@ -134,20 +140,18 @@ def writeFile(tuples, file):
 
 			time = attributes[7].replace(',','')
 
-			if(attributes[6] == '00:00:00'): # adjusting timestamps
-				h = time[0] + time[1]
-				m = time[2] + time[3]
-				s = time[4] + time[5]
-				timestamp = attributes[5] + ' ' + h + ':' + m + ':' + s
-			else:
-				timestamp = attributes[5] + ' ' + attributes[6] 
+			h = time[0] + time[1]
+			m = time[2] + time[3]
+			s = time[4] + time[5]
+			timestamp = attributes[5] + ' ' + h + ':' + m + ':' + s
 
-			currentTime = attributes[6]
+			currentTime = time
 			currentDate = attributes[5]
 			currentComplement = time
 
-			if currentTime == oldTime and currentDate == oldDate and currentComplement == oldComplement and currentAcc_Path == oldAcc_Path:
+			if currentDate == oldDate and currentAcc_Path == oldAcc_Path and currentTime[0] == oldTime[0] and currentTime[1] == oldTime[1] and currentTime[2] == oldTime[2] and ((currentTime[3] == oldTime[3]) or(int(currentTime[3]) == int(oldTime[3])+1)):
 				counter += 1 # merging repeated lines by skiping them and writing the complement on the past line
+				oldTime = currentTime
 				file.write('  ' + fieldName + '=' + fieldValue)
 			else:
 				# conditions for the file writing
